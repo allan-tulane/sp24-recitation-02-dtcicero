@@ -1,6 +1,6 @@
 # CMPS 2200  Recitation 02
 
-**Name (Team Member 1):**_________________________  
+**Name (Team Member 1):** Daniel Cicero 
 **Name (Team Member 2):**_________________________
 
 In this recitation, we will investigate recurrences. 
@@ -37,12 +37,39 @@ where $W(1) = 1$.
 
 - [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
-**TODO: your answer goes here**
+For f(n) = 1: W(n)=aW(n/b)+1. This simplifies to W(n)=a log b * n.
+The asymptotic behavior is O(a log b * n).
+
+For f(n) = log(n):  W(n)=aW(n/b)+logn. Asymptotic behavior is  O(log^k+1 n). 
+
+For f(n) = n:  W(n)=aW(n/b)+n. The asymptotic behavior is O(nlogn) if a>b, and O(n) if a=b. 
+
+f(n) = 1:
+W(10) = 15
+W(100) = 127
+W(1000) = 1023
+
+f(n) = log n:
+W(10) = 11.965784284662085
+W(100) = 157.26489336880783
+W(1000) = 1384.4210154954358
+
+f(n) = n:
+W(10) = 36
+W(100) = 652
+W(1000) = 9120
+
+
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `test_compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
-**TODO: your answer goes here**
+If c < logb a: The work is log O(n logb a)
+If c > logb a: The work is log O(a logb n)
+If c = logb a: The work is log O(a logb n)
+
 
 - [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
 
-**TODO: your answer goes here**
+If c < logb a: The span is log O(n logb a)
+If c = logb a: The span is O(a logb n)
+If c > logb a: The span is O(a logb n)
